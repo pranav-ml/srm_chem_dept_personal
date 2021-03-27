@@ -89,11 +89,17 @@ table .absorbing-column
       <!-- Right Nav Section -->
       <ul class="right">';?>
 
-       <?php
-       if($_SESSION['type']=="autosorbiqadmin"){echo'<li><a href="block.php">Slot Blocking</a></li>
-          <li><a href="autosorbiqrequests.php">Autosorb IQ Requests</a></li>
-        <li><a href="autosorbiq_cancellation.php">Autosorb IQ Cancellation Requests</a></li>
-        <li><a href="bookingdata.php">Autosorb IQ Booking Data</a></li>';}
+        <?php
+        if($_SESSION['type']=="autosorbiqadmin"){echo'<li><a href="block.php">Slot Blocking</a></li>
+            <li><a href="autosorbiqrequests.php">Autosorb IQ Requests</a></li>
+            <li><a href="autosorbiq_cancellation.php">Autosorb IQ Cancellation Requests</a></li>
+            <li><a href="bookingdata.php">Autosorb IQ Booking Data</a></li>';}
+
+        if($_SESSION['type']=="fuelcelladmin"){echo'<li><a href="block.php">Slot Blocking</a></li>
+          <li><a href="fuelcellrequests.php">FCA and RRDE Instruments Requests</a></li>
+          <li><a href="fuelcell_cancellation.php">FCA and RRDE Instruments Cancellation Requests</a></li>   
+          <li><a href="bookingdata.php">FCA and RRDE Instruments Booking Data</a></li>';}   //need to create fuelcell_cancellation.php
+
         if($_SESSION['type']=="superuser"){
             echo '<li><a href="block.php">Slot Blocking</a></li>
             <li><a href="registration.php">Registration Requests</a></li>
@@ -101,6 +107,7 @@ table .absorbing-column
             <li><select name="Requests" onchange="location = this.value;" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 8px;">
               <option value="#">Requests</option>
               <option value="autosorbiqrequests.php">Autosorb IQ Requests</option>
+              <option value="fuelcellrequests.php">FCA and RRDE Instruments Requests</option>
             </select></li>
             <li><a href="users.php">View Users Data</a></li>';
           }
@@ -222,6 +229,69 @@ else if($_SESSION["type"]=="autosorbiqadmin")
            echo '<td><select name="instrument_id" id="instrument_id" required>';
            echo '<option value="" disabled selected>Select your option</option>';
            echo '<option value ="'.'1'.'">'.'Autosorb IQ'.'</option>';
+           echo '</tr>';
+           echo '</table>';
+           echo '<button style="float:right;">Proceed</button>';
+           echo '</div>';
+ 
+           echo '<div class="small-16 columns" id="data1">';
+ 
+ 
+           echo '</div>';
+           echo '</div>';
+           echo '<div id="dom-target" style="display: none;">';
+           echo htmlspecialchars($admin_id); // passing admin id
+           echo '</div>';
+ }
+
+
+ else if($_SESSION["type"]=="fuelcelladmin")
+{        
+        $admin_id=16;
+        echo '<br><div class="row">Type your annoucement here-<br>
+        <form action="block.php" id="form1" method=POST>
+        <input type="text" name="fuelcellannouncement" autocomplete="off"><br>
+        </form>
+        <button type="submit" form="form1" value="Submit">Make Announcement</button>
+        </div>';
+         echo '<script> $( function() {
+           $( "#datepicker" ).datepicker({
+              minDate: 0, maxDate: 60
+            });
+          });
+          </script>';
+
+          echo '<script> $( function() {
+            $( "#datepicker" ).datepicker({
+               minDate: 0, maxDate: 60
+             });
+           });
+           </script>';
+ 
+           echo '<script> $(document).ready(function(){
+             $("button").click(function(){
+               var d =new Date($("#datepicker").datepicker("getDate"));
+               var date=d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate();
+               var inst_id = $("#instrument_id").find(":selected").val();
+               var div = document.getElementById("dom-target");
+               var admin_id = div.textContent;
+               $("#data1").load("load_slots.php",{date: date, id: inst_id, admin_id: admin_id});
+             });
+           });</script>';
+ 
+           echo '<div class="row" style="margin-top:10px;">';
+           echo '<div class="small-16 columns">';
+           echo '<h3>Fuel Cell Analyser and RRDE Instruments Admin Block Page</h3>';
+           echo '<table>';
+           echo '<tr>';
+           echo '<th>Pick the Date:</th>';
+           echo '<th>Pick an Instrument:</th>';
+           echo '</tr>';
+           echo '<tr>';
+           echo '<td><input type="text" name="date" id="datepicker" required autocomplete="off"></td>';
+           echo '<td><select name="instrument_id" id="instrument_id" required>';
+           echo '<option value="" disabled selected>Select your option</option>';
+           echo '<option value ="'.'15'.'">'.'Fuel Cell Analyser and RRDE Instruments'.'</option>';
            echo '</tr>';
            echo '</table>';
            echo '<button style="float:right;">Proceed</button>';
