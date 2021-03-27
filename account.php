@@ -9,6 +9,9 @@ if($_SESSION["type"]=="superuser") {
 if($_SESSION["type"]=="autosorbiqadmin") {
   header("location:autosorbiqrequests.php");
 }
+if($_SESSION["type"]=="fuelcelladmin") {
+  header("location:fuelcellrequests.php");    //need to create fuelcellrequests.php
+}
 include 'php/config.php';
 ?>
 <?php
