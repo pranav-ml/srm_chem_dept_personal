@@ -1,0 +1,58 @@
+html
+{
+    position: relative;
+    min-height: 100%;
+}
+.body-css
+{
+  /* background: #360033; 
+  background: linear-gradient(to top left, #66ccff 0%, #666699 100%);
+  background-repeat: no-repeat;*/
+  background: #edf1f7;
+  
+
+}
+.form-container
+{
+  padding: 25px 60px;
+  margin-top: 2vh;
+  -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.75);
+  background-color:#e3f2fd	;
+}
+.form-control
+{
+  border-radius: 20px;
+}
+.btn-block
+{
+  border-radius: 20px;
+}
+.navbar{
+  border-width: 0px;
+  -webkit-box-shadow: 0px 0px;
+  box-shadow: 0px 0px;
+  background-color: rgba(0,0,0,0.0);
+  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+.form-success
+{
+  color: green;
+  text-align: center;
+}
+.form-message
+{
+  color: red;
+  text-align: center;
+}
+.form-error{
+  color: red;
+  text-align: center;
+}
+.input-error{
+  box-shadow: 0 0 25px red;
+}
