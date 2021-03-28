@@ -46,6 +46,11 @@ if($_SERVER['REQUEST_METHOD']=="POST" and isset($_POST['submitb']))
     {
        $sql=$mysqli->query("SELECT COUNT(*) as count FROM orders WHERE status=1 AND order_id>1000 AND product_name='Autosorb iQ-C-AG/MP/XR'"); // Show bookings only for the halls under that admin...
     }
+  else if($admin_id==16)
+  {
+      $sql=$mysqli->query("SELECT COUNT(*) as count FROM orders WHERE status=1 AND order_id>1000 AND product_name='Fuel Cell Analyser and RRDE Instruments'"); // Show bookings only for the halls under that admin...
+  }
+
   $sql_res=$sql->fetch_object();
   
   // Total no of rows in the orders table.
@@ -95,6 +100,10 @@ if($filter_flag==1) // This executes when the user chooses to filter the result.
           {
            $a = $mysqli->query("SELECT SQL_CALC_FOUND_ROWS * from orders,users WHERE user_id=id AND WHERE product_name='Autosorb iQ-C-AG/MP/XR' AND status=1 AND date_of_order BETWEEN '$sd' AND '$ed' ORDER BY order_id DESC  ");
           }
+          if($inst=='Fuel Cell Analyser and RRDE Instruments')
+          {
+           $a = $mysqli->query("SELECT SQL_CALC_FOUND_ROWS * from orders,users WHERE user_id=id AND WHERE product_name='Fuel Cell Analyser and RRDE Instruments' AND status=1 AND date_of_order BETWEEN '$sd' AND '$ed' ORDER BY order_id DESC  ");
+          }
         }
 
 else if($filter_flag==0) // This executes when no filtering is applied ie by default.
@@ -104,6 +113,10 @@ else if($filter_flag==0) // This executes when no filtering is applied ie by def
             if($_SESSION["type"]=="autosorbiqadmin")
             {
               $a = $mysqli->query("SELECT SQL_CALC_FOUND_ROWS * from orders,users WHERE user_id=id AND product_name='Autosorb iQ-C-AG/MP/XR' AND status=1 ORDER BY order_id DESC $limit");
+            }
+            if($_SESSION["type"]=="fuelcelladmin")
+            {
+              $a = $mysqli->query("SELECT SQL_CALC_FOUND_ROWS * from orders,users WHERE user_id=id AND product_name='Fuel Cell Analyser and RRDE Instruments' AND status=1 ORDER BY order_id DESC $limit");
             }
             if($_SESSION["type"]=="superuser")
             {
@@ -241,6 +254,13 @@ table .absorbing-column
           <li><a href="autosorbiqrequests.php">Autosorb iQ Requests</a></li>
         <li><a href="autosorbiq_cancellation.php">Autosorb iQ Cancellation Requests</a></li>
         <li><a href="bookingdata.php">Autosorb iQ Booking Data</a></li>';}
+        
+        
+        if($_SESSION['type']=="fuelcelladmin"){echo'<li><a href="block.php">Slot Blocking</a></li>
+          <li><a href="fuelcellrequests.php">FCA and RRDE Instruments Requests</a></li>
+        <li><a href="fuelcell_cancellation.php">FCA and RRDE Instruments Cancellation Requests</a></li>
+        <li><a href="bookingdata.php">Multiwave Pro Booking Data</a></li>';}
+        
         if($_SESSION['type']=="superuser"){
             echo '<li><a href="block.php">Slot Blocking</a></li>
             <li><a href="registration.php">Registration Requests</a></li>
@@ -248,6 +268,7 @@ table .absorbing-column
             <li><select name="Requests" onchange="location = this.value;" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 8px;">
               <option value="#">Requests</option>
               <option value="autosorbiqrequests.php">Autosorb iQ Requests</option>
+              <option value="fuelcellrequests.php">FCA and RRDE Instruments Requests</option>
             </select></li>
             <li><a href="users.php">View Users Data</a></li>';
           }
@@ -278,9 +299,16 @@ table .absorbing-column
           {
             echo'<option value="Autosorb iQ-C-AG/MP/XR">Autosorb iQ-C-AG/MP/XR</option>';
           }
+
+          if($_SESSION['type']=="fuelcell")
+          {
+            echo'<option value="FCA and RRDE Instruments">FCA and RRDE Instruments</option>';
+          }
+
           if($_SESSION['type']=="superuser")
           {
             echo'<option value="Autosorb iQ-C-AG/MP/XR">Autosorb iQ-C-AG/MP/XR</option>';
+            echo'<option value="FCA and RRDE Instruments">FCA and RRDE Instruments</option>';
           }
           ?>
           <?php
@@ -387,6 +415,62 @@ table .absorbing-column
             echo '</tr>';
             echo '</table>';
             } // IF END FOR Autosorb IQ
+
+            if($obj->product_name=='Fuel Cell Analyser and RRDE Instruments')
+            {
+              $oi=$obj->order_id;
+              $q1=$mysqli->query("SELECT * FROM fuelcell_order_details WHERE order_id=$oi");
+              $q1_result=$q1->fetch_object();
+
+            echo '<br>Order Details for Booking Id: '.$obj->order_id.'';
+            echo '<table class="absorbing-column">';
+            echo '<tr>';
+            echo '<th>Time of Booking</th>';
+            echo '<th>Name</th>';
+            echo '<th>Institute</th>';
+            echo '<th>Institute ID</th>';
+            echo '<th>Phone No</th>';
+            echo '<th>Email</th>';
+            echo '<th>Date of Usage</th>';
+            echo '<th>Slot</th>';
+            echo '<th>Instrument Name</th>';
+            echo '</tr>';
+
+            echo '<tr>';
+            echo '<td>'.$obj->timestamp.'</td>';
+            echo '<td>'.$obj->fname.' '.$obj->lname.'</td>';
+            echo '<td style="word-break:break-all;">'.$obj->institute.'</td>';
+            echo '<td>'.$obj->iid.'</td>';
+            echo '<td>'.$obj->phno.'</td>';
+            echo '<td>'.$obj->email.'</td>';
+            echo '<td>'.$obj->date_of_order.'</td>';
+            echo '<td>'.$obj->slot_time.'</td>';
+            echo '<td>'.$obj->product_name.'</td>';
+            echo '</tr>';
+            echo '</table>';
+
+            //third table
+            echo '<table class="mytable">';
+            echo '<tr>';
+            echo '<td>Booking Comment Made:<br><font color="blue"><i>'.$obj->ucomment.'</font>';
+            echo '</i></td>';
+            echo '</tr>';
+            echo '</table>';
+            echo '<table class="mytable">';
+            echo '<tr>';
+            echo '<td>';
+            echo '<form action ="bookingdata.php" method=POST>
+            <textarea name="tcomment" placeholder="Your comment will be displayed above."></textarea>';
+            //echo '<textarea name="comment" placeholder="Please Enter your comment about the booking here."></textarea>';
+            echo '<td>';
+            echo '
+            <button type=submit name="comment" value='.$obj->order_id.' style="padding: 8px 8px; border-radius:7px;">Comment/Update Comment</button><br>
+            </form>';
+            echo '</td>';
+            echo '</tr>';
+            echo '</table>';
+            } // IF END FOR Fuel Cell Analyser and RRDE Instruments
+
 
           } // end of while
           echo 'Total Bookings : ';echo $count;

@@ -169,7 +169,7 @@ include ('php/data.php');
 				if($slots->slot_16!=0 && $slots->slot_16!=2 && $slots->slot_16!=3 && $slots->slot_16!=4 && $slots->slot_16<1001 && $slots->slot_16!=12 && ($instrument_id==10)) {echo' <option value="'.$hrmspectro_slot_16.'">'.$hrmspectro_slot_16.'</option>';}
 			}
 
-			else if($instrument_id==15)
+			else if($instrument_id==15)		//added pid 15
 			{
 				if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && $slots->slot_9!=12 && ($instrument_id==10) ) {echo' <option value="'.$fuelcell_slot_9.'">'.$fuelcell_slot_9.'</option>';}
 				if($slots->slot_10!=0 && $slots->slot_10!=2 && $slots->slot_10!=3 && $slots->slot_10!=4 && $slots->slot_10<1001 && $slots->slot_10!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_10.'">'.$fuelcell_slot_10.'</option>';}
