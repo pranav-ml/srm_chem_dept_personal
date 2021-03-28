@@ -291,7 +291,7 @@ else if($_SESSION["type"]=="autosorbiqadmin")
            echo '<td><input type="text" name="date" id="datepicker" required autocomplete="off"></td>';
            echo '<td><select name="instrument_id" id="instrument_id" required>';
            echo '<option value="" disabled selected>Select your option</option>';
-           echo '<option value ="'.'15'.'">'.'Fuel Cell Analyser and RRDE Instruments'.'</option>';
+           echo '<option value ="'.'1'.'">'.'Fuel Cell Analyser and RRDE Instruments'.'</option>'; 
            echo '</tr>';
            echo '</table>';
            echo '<button style="float:right;">Proceed</button>';

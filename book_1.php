@@ -73,6 +73,14 @@ if(!isset($_SESSION["username"])) {header("location:index.php");}
             if($counter == 1){$FORCE_ONE_SLOT = true;}
           }
 
+          if($pid == 15)    //added pid 15
+          {
+            $slot_9_query=$mysqli->query("SELECT slot_id FROM slot_fuelcell WHERE slot_9 = 1 AND slot_date = '$date'");
+
+            if($rows=mysqli_num_rows($slot_9_query) >=1){$counter++;}
+            if($counter == 1){$FORCE_ONE_SLOT = true;}
+          }
+
           if($date<"2000-01-01"){
             echo '<h1 align="center" style="color:red;">Please Select a Valid Date</h1>';
             header("Refresh:2; url=products.php");
@@ -147,6 +155,18 @@ if(!isset($_SESSION["username"])) {header("location:index.php");}
                   if($instrument_id==1)
                   {
                     if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && ($instrument_id==1 || $instrument_id==5) ) {echo' <option value="'.$autosorbiq_slot_9.'">'.$autosorbiq_slot_9.'</option>';}
+                  }
+
+                  if($instrument_id==15)    //added instrument 15
+                  {
+                    if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_9.'">'.$fuelcell_slot_9.'</option>';}
+                    if($slots->slot_10!=0 && $slots->slot_10!=2 && $slots->slot_10!=3 && $slots->slot_10!=4 && $slots->slot_10<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_10.'">'.$fuelcell_slot_10.'</option>';}
+                    if($slots->slot_11!=0 && $slots->slot_11!=2 && $slots->slot_11!=3 && $slots->slot_11!=4 && $slots->slot_11<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_11.'">'.$fuelcell_slot_11.'</option>';}
+                    if($slots->slot_12!=0 && $slots->slot_12!=2 && $slots->slot_12!=3 && $slots->slot_12!=4 && $slots->slot_12<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_12.'">'.$fuelcell_slot_12.'</option>';}
+                    if($slots->slot_13!=0 && $slots->slot_13!=2 && $slots->slot_13!=3 && $slots->slot_13!=4 && $slots->slot_13<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_13.'">'.$fuelcell_slot_13.'</option>';}
+                    if($slots->slot_14!=0 && $slots->slot_14!=2 && $slots->slot_14!=3 && $slots->slot_14!=4 && $slots->slot_14<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_14.'">'.$fuelcell_slot_14.'</option>';}
+                    if($slots->slot_15!=0 && $slots->slot_15!=2 && $slots->slot_15!=3 && $slots->slot_15!=4 && $slots->slot_15<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_15.'">'.$fuelcell_slot_15.'</option>';}
+                    if($slots->slot_16!=0 && $slots->slot_16!=2 && $slots->slot_16!=3 && $slots->slot_16!=4 && $slots->slot_16<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_16.'">'.$fuelcell_slot_16.'</option>';}
                   }
 
                   // UNCOMMENT THESE SLOTS IF NEEDED.
@@ -229,6 +249,21 @@ if(!isset($_SESSION["username"])) {header("location:index.php");}
                     echo '</form>';
                   }
 
+                  if($pid==15)    //added pid 15
+                  {
+                    echo '<table class="mytable">';
+                    if($no_of_slots == 1 || $FORCE_ONE_SLOT == true)
+                    {
+                    echo '<tr>';
+                    echo '<td style="text-align:center">';
+                    echo'<td>';
+                    echo '<button type=submit style="float:right;">Book</button>';
+                    echo '</tr>';
+                    echo '</table>';
+                    echo '</form>';
+                    }
+                  }
+
                   // CODE ONLY IF TWO SLOTS ARE SELECTED AT A TIME FOR BOOKING......... 
 
                   if($no_of_slots == 2 && $FORCE_ONE_SLOT == false)
@@ -284,6 +319,18 @@ if(!isset($_SESSION["username"])) {header("location:index.php");}
                             else if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && $instrument_id!=1){echo' <option value="'.$mrs_slot_9.'">'.$mrs_slot_9.'</option>';}
                           }
 
+                          if($instrument_id==15)    //added instrument 15
+                          {
+                            if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_9.'">'.$fuelcell_slot_9.'</option>';}
+                            if($slots->slot_10!=0 && $slots->slot_10!=2 && $slots->slot_10!=3 && $slots->slot_10!=4 && $slots->slot_10<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_10.'">'.$fuelcell_slot_10.'</option>';}
+                            if($slots->slot_11!=0 && $slots->slot_11!=2 && $slots->slot_11!=3 && $slots->slot_11!=4 && $slots->slot_11<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_11.'">'.$fuelcell_slot_11.'</option>';}
+                            if($slots->slot_12!=0 && $slots->slot_12!=2 && $slots->slot_12!=3 && $slots->slot_12!=4 && $slots->slot_12<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_12.'">'.$fuelcell_slot_12.'</option>';}
+                            if($slots->slot_13!=0 && $slots->slot_13!=2 && $slots->slot_13!=3 && $slots->slot_13!=4 && $slots->slot_13<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_13.'">'.$fuelcell_slot_13.'</option>';}
+                            if($slots->slot_14!=0 && $slots->slot_14!=2 && $slots->slot_14!=3 && $slots->slot_14!=4 && $slots->slot_14<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_14.'">'.$fuelcell_slot_14.'</option>';}
+                            if($slots->slot_15!=0 && $slots->slot_15!=2 && $slots->slot_15!=3 && $slots->slot_15!=4 && $slots->slot_15<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_15.'">'.$fuelcell_slot_15.'</option>';}
+                            if($slots->slot_16!=0 && $slots->slot_16!=2 && $slots->slot_16!=3 && $slots->slot_16!=4 && $slots->slot_16<1001 && ($instrument_id==15) ) {echo' <option value="'.$fuelcell_slot_16.'">'.$fuelcell_slot_16.'</option>';}
+                          }
+
                           // UNCOMMENT THESE SLOTS IF NEEDED.
                           // if ($slots->slot_16!=0 && $slots->slot_16<1001) {echo' <option value="'.'10'.'">'."4PM - 5PM".'</option>';}
                           // if ($slots->slot_17!=0 && $slots->slot_17<1001) {echo' <option value="'.'11'.'">'."5PM - 6PM".'</option>';}
@@ -310,6 +357,15 @@ if(!isset($_SESSION["username"])) {header("location:index.php");}
                             echo '<tr>';
                             echo '<td colspan="2" align="center">Only 1 sample per day!</td>';
                             echo '</tr>';
+                            echo '<tr>';
+                            echo '<button type=submit style="float:right;">Book</button>';
+                            echo '</tr>';
+                            echo '</table>';        
+                          }
+
+                          if($pid==15)    //added pid 15
+                          {
+                            echo '<table class="mytable">';
                             echo '<tr>';
                             echo '<button type=submit style="float:right;">Book</button>';
                             echo '</tr>';
