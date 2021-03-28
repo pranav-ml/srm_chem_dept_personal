@@ -81,6 +81,11 @@ if(!empty($_POST)) // Used to stop a user from jumping to this page without prop
         $name="Autosorb iQ-C-AG/MP/XR";
     }
 
+    if($pidi==15)        // updated for pid 15
+    {
+        $name="Fuel Cell Analyser and RRDE Instruments";
+    }
+
     if($pidi == 1)
     {
     // RUN QUERY ON DATABASE TO SEE IF USER HAS PLACED AN ORDER.
@@ -99,6 +104,21 @@ if(!empty($_POST)) // Used to stop a user from jumping to this page without prop
     {
     // RUN QUERY ON DATABASE TO SEE IF USER HAS PLACED AN ORDER.
     $result=$mysqli->query("SELECT * FROM orders WHERE product_name='XRD' AND user_id=$id AND date_of_order BETWEEN(NOW()-INTERVAL 7 DAY) AND (NOW()+INTERVAL 15 DAY)");
+   
+    if($result->num_rows >=2) // IF YES, STOP HIM From making another order
+    {
+      echo "<br><br>";
+      echo "<h3 align='center'>Sorry!</h3>";
+      echo "<br>";
+      echo "<p align='center'>You have already made two bookings. Booking Limit is reached as only 2 bookings per person per 14 days is allowed per instrument.";
+      $order_limit_reached=1;
+    }
+    }
+
+    if($pidi == 15)        // updated for pid 15
+    {
+    // RUN QUERY ON DATABASE TO SEE IF USER HAS PLACED AN ORDER.
+    $result=$mysqli->query("SELECT * FROM orders WHERE product_name='Fuel Cell Analyser and RRDE Instruments' AND user_id=$id AND date_of_order BETWEEN(NOW()-INTERVAL 7 DAY) AND (NOW()+INTERVAL 15 DAY)");
    
     if($result->num_rows >=2) // IF YES, STOP HIM From making another order
     {
@@ -135,6 +155,12 @@ if(!empty($_POST)) // Used to stop a user from jumping to this page without prop
         if($pid==1)
         {
              $slot_c_1 = $autosorbiq_map[$slot_time_1];
+        }
+
+        if($pid==15)        // updated for pid 15
+        {
+             $slot_c_1 = $fuelcell_map[$slot_time_1];
+             if($no_of_slots == 2 && $force_one_slot == false) {$slot_c_2 = $fuelcell_map[$slot_time_2];}
         }
 
         //Code to display the instrument name and price section in the table
@@ -278,6 +304,19 @@ if(!empty($_POST)) // Used to stop a user from jumping to this page without prop
             $degassing_condition=mysqli_real_escape_string($mysqli,$_POST['degassing_condition']);
             $additional_details=mysqli_real_escape_string($mysqli,$_POST['additional_details']);
             $od_1=$mysqli->query("INSERT INTO autosorbiq_order_details(order_id, nature_of_sample, porous_nature, analysis_type, degassing_temp, degassing_condition, additional_details)VALUES($oi, '$sample_nature','$porous_nature', '$analysis_type', '$degassing_temp','$degassing_condition','$additional_details')");
+        }
+    }
+
+    if($pid==15)        // updated for pid 15
+    {
+        if($no_of_slots == 1 || $force_one_slot == true)
+        {
+            $od_1=$mysqli->query("INSERT INTO fuelcell_order_details(order_id)VALUES($oi)");
+        }
+        else if ($no_of_slots == 2 && $force_one_slot == false)
+        {
+            $od_1=$mysqli->query("INSERT INTO fuelcell_order_details(order_id)VALUES($oi-1)");
+            $od_2=$mysqli->query("INSERT INTO fuelcell_order_details(order_id)VALUES($oi)");
         }
     }
 

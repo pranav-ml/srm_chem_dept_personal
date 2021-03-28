@@ -21,6 +21,35 @@ else
 }
 }
 
+if($_SERVER['REQUEST_METHOD']=="POST" and isset($_POST['mpepannouncement']))
+{$booya=$_POST['mpepannouncement'];
+
+$result = $mysqli->query("UPDATE announcement SET mpepann = '$booya'");
+if($result)
+{
+  echo'Announcement Updated';
+}
+else
+{
+  echo 'SQL Error! Contact Administrator';
+}
+}
+
+// BCI Announcement
+if($_SERVER['REQUEST_METHOD']=="POST" and isset($_POST['fuelcellannouncement']))
+{$booya=$_POST['fuelcellannouncement'];
+
+$result = $mysqli->query("UPDATE announcement SET fuelcellann = '$booya'");
+if($result)
+{
+  echo'Announcement Updated';
+}
+else
+{
+  echo 'SQL Error! Contact Administrator';
+}
+}
+
 ?>
 <?php
 
