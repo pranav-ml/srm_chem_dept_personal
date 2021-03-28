@@ -210,6 +210,21 @@ For specific queries contact the following:<br>
                 Location: CV Raman Research Park, (Room No: 003) SRM-IST (KTR)
               </td>
             </tr>
+
+            <tr>
+              <td>
+              Fuel Cell Analyser and RRDE Instruments
+              </td>
+              <td>
+                In-charge:<br>
+                Dr. T. Maiyalagan<br>
+                E-Mail: maiyalat@srmist.edu.in<br>
+                Mobile: 8220322594<br><br>
+                Location: C.V. Raman Research Park, (Room No: 411) SRM-IST (KTR)
+              </td>
+            </tr>
+
+
           </table>
         </p>
       </div>

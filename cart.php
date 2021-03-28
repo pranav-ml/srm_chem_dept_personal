@@ -110,6 +110,48 @@ alert("Any publications/patents out of Department of Chemistrty facilities, plea
               <option value="1" selected>1</option>
               </select>';
             }
+
+            // added id 15 instrument
+            if($inst_id==15)
+            {
+              $q = $mysqli->query("SELECT slot_date from slot_fuelcell WHERE (slot_9 > 1000 OR slot_9 = 0 OR slot_9 = 2) AND (slot_10 > 1000 OR slot_10 = 0 OR slot_10 = 2) AND (slot_11 > 1000 OR slot_11 = 0 OR slot_11 = 2) AND (slot_12 > 1000 OR slot_12 = 0 OR slot_12 = 2) AND (slot_13 > 1000 OR slot_13 = 0 OR slot_13 = 2) AND (slot_14 > 1000 OR slot_14 = 0 OR slot_14 = 2) AND (slot_15 > 1000 OR slot_15 = 0 OR slot_15 = 2) AND (slot_16 > 1000 OR slot_16 = 0 OR slot_16 = 2)");
+              while($row=mysqli_fetch_assoc($q)){
+                $dates[]=$row;
+              }
+              foreach($dates as $data)
+              {
+                $disabledates[]=$data["slot_date"];
+              }
+              // var_dump($disabledates); stanity check to see if all disabled dates are correctly captured. 
+              echo '<script>
+                $( function() {
+                  var myarray =';?><?php echo json_encode($disabledates)?>;
+                  <?php
+                  echo'
+                  function custom (date)
+                  {
+                    var string = jQuery.datepicker.formatDate("yy-mm-dd", date);
+                    var day = date.getDay();
+                    return [ (myarray.indexOf(string) == -1) && (day !=0), "Available","Available" ];
+                  };
+                $("#datepicker" ).datepicker({
+                  beforeShowDay: custom,
+                  minDate: 4,
+                  maxDate: 21
+                });
+              });
+                </script>';
+
+            }
+
+            if($inst_id==14){
+              echo '<td colspan="1" align="left"><input type="text" name="date" id="datepicker" readonly="true" required></td>';
+              echo '<td>';
+              echo '<select id="no_of_slots" required name="no_of_slots">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              </select>';
+            }
             echo '</td>';
             echo'</tr>';
             echo'<tr>';
