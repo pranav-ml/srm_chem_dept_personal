@@ -143,8 +143,7 @@ alert("Any publications/patents out of Department of Chemistrty facilities, plea
                 </script>';
 
             }
-
-            if($inst_id==14){
+            if($inst_id==15){
               echo '<td colspan="1" align="left"><input type="text" name="date" id="datepicker" readonly="true" required></td>';
               echo '<td>';
               echo '<select id="no_of_slots" required name="no_of_slots">

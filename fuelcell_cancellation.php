@@ -84,7 +84,7 @@ table .absorbing-column {
             <li><a href="analysis.php">Analysis</a></li>';
           }
           ?>
-        <li><a href="fuelcellrequests.php">Fuel Cell Analyser and RRDE Instruments Requests</a></li>
+        <li><a href="fuelcellrequests.php">FCA and RRDE Instruments Requests</a></li>
         <li><a href="fuelcell_cancellation.php">FCA and RRDE Instruments Cancellation Requests</a></li>
         <li><a href="bookingdata.php">FCA and RRDE Instruments Booking Data</a></li>
         <?php

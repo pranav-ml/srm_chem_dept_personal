@@ -210,7 +210,7 @@ Proof of payment details must be uploaded within 48 hrs of booking. Otherwise th
               echo '<center><img src="images/'.$obj->product_img_name.'"/></center>';
               echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong>Booking Price</strong>:<a href="./services.php">Check Service Section</a></p>';
-              echo '<p><center><button type="submit" value="'.$i.'" name="inst_id" class="radius button">Book</button></center></p>';
+              echo '<p><center><button type="submit" value="'.$obj->id.'" name="inst_id" class="radius button">Book</button></center></p>';
               echo '</div>';
               echo '</div>';
               $i++;

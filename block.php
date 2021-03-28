@@ -127,7 +127,7 @@ table .absorbing-column
         if($_SESSION['type']=="fuelcelladmin"){echo'<li><a href="block.php">Slot Blocking</a></li>
           <li><a href="fuelcellrequests.php">FCA and RRDE Instruments Requests</a></li>
           <li><a href="fuelcell_cancellation.php">FCA and RRDE Instruments Cancellation Requests</a></li>   
-          <li><a href="bookingdata.php">FCA and RRDE Instruments Booking Data</a></li>';}   //need to create fuelcell_cancellation.php
+          <li><a href="bookingdata.php">FCA and RRDE Instruments Booking Data</a></li>';}   
 
         if($_SESSION['type']=="superuser"){
             echo '<li><a href="block.php">Slot Blocking</a></li>
