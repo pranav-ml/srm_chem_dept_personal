@@ -168,6 +168,19 @@ include ('php/data.php');
 				if($slots->slot_15!=0 && $slots->slot_15!=2 && $slots->slot_15!=3 && $slots->slot_15!=4 && $slots->slot_15<1001 && $slots->slot_15!=12 && ($instrument_id==10)) {echo' <option value="'.$hrmspectro_slot_15.'">'.$hrmspectro_slot_15.'</option>';}
 				if($slots->slot_16!=0 && $slots->slot_16!=2 && $slots->slot_16!=3 && $slots->slot_16!=4 && $slots->slot_16<1001 && $slots->slot_16!=12 && ($instrument_id==10)) {echo' <option value="'.$hrmspectro_slot_16.'">'.$hrmspectro_slot_16.'</option>';}
 			}
+
+			else if($instrument_id==15)
+			{
+				if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && $slots->slot_9!=12 && ($instrument_id==10) ) {echo' <option value="'.$fuelcell_slot_9.'">'.$fuelcell_slot_9.'</option>';}
+				if($slots->slot_10!=0 && $slots->slot_10!=2 && $slots->slot_10!=3 && $slots->slot_10!=4 && $slots->slot_10<1001 && $slots->slot_10!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_10.'">'.$fuelcell_slot_10.'</option>';}
+				if($slots->slot_11!=0 && $slots->slot_11!=2 && $slots->slot_11!=3 && $slots->slot_11!=4 && $slots->slot_11<1001 && $slots->slot_11!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_11.'">'.$fuelcell_slot_11.'</option>';}
+				if($slots->slot_12!=0 && $slots->slot_12!=2 && $slots->slot_12!=3 && $slots->slot_12!=4 && $slots->slot_12<1001 && $slots->slot_12!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_12.'">'.$fuelcell_slot_12.'</option>';}
+				if($slots->slot_13!=0 && $slots->slot_13!=2 && $slots->slot_13!=3 && $slots->slot_13!=4 && $slots->slot_13<1001 && $slots->slot_13!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_13.'">'.$fuelcell_slot_13.'</option>';}
+				if($slots->slot_14!=0 && $slots->slot_14!=2 && $slots->slot_14!=3 && $slots->slot_14!=4 && $slots->slot_14<1001 && $slots->slot_14!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_14.'">'.$fuelcell_slot_14.'</option>';}
+				if($slots->slot_15!=0 && $slots->slot_15!=2 && $slots->slot_15!=3 && $slots->slot_15!=4 && $slots->slot_15<1001 && $slots->slot_15!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_15.'">'.$fuelcell_slot_15.'</option>';}
+				if($slots->slot_16!=0 && $slots->slot_16!=2 && $slots->slot_16!=3 && $slots->slot_16!=4 && $slots->slot_16<1001 && $slots->slot_16!=12 && ($instrument_id==10)) {echo' <option value="'.$fuelcell_slot_16.'">'.$fuelcell_slot_16.'</option>';}
+			}
+
 			else if($instrument_id==19)
                   {
                     if($slots->slot_9!=0 && $slots->slot_9!=2 && $slots->slot_9!=3 && $slots->slot_9!=4 && $slots->slot_9<1001 && $slots->slot_9!=13 && ($instrument_id==19) ) {echo' <option value="'.$pcr_slot_9.'">'.$pcr_slot_9.'</option>';}

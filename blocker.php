@@ -29,6 +29,11 @@ $q2_result=$q2->fetch_object();
           $slot_c=$autosorbiq_map[$slot];
      }
 
+     if($id==15)
+     {
+          $slot_c=$bci_map[$slot];
+     }
+
  
 /*Code to generate the slot time string. DO NOT EDIT!*/
 
