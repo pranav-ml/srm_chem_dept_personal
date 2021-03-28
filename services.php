@@ -215,6 +215,20 @@ img {vertical-align: middle;}
     <td>1500-3000/sample</td>
     <td>1500-3000/sample</td>
   </tr>
+
+  <tr>
+    <td>15</td>
+    <td>Fuel Cell analyser</td>
+    <td>SRM Seed Grant</td>
+    <td>Dr. T. Maiyalagan, 8220322594</td>
+    <td>100/sample</td>
+    <td>300/sample</td>
+    <td>500-3000/sample</td>
+    <td>2000/sample</td>
+  </tr>
+  
+
+
 </table>
 </div>
 </p>

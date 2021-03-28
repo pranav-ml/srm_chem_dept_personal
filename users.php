@@ -119,6 +119,7 @@ table .absorbing-column {
         echo '<li><select name="Requests" onchange="location = this.value;" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 8px;">
         <option value="#">Requests</option>
         <option value="autosorbiqrequests.php">Autosorb IQ Requests</option>
+        <option value="fuelcellrequests.php">Fuel Cell Analyser and RRDE Instruments</option>
       </select></li>
         <li><a href="bookingdata.php">View Booking Data</a></li>
         <li><a href="users.php">View Users Data</a></li>';
