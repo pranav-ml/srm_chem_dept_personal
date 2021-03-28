@@ -416,6 +416,35 @@ table .absorbing-column
 
               }
 
+              if($obj->product_name=='Fuel Cell Analyser and RRDE Instruments')
+              {
+                $q1=$mysqli->query("SELECT * FROM fuelcell_order_details WHERE order_id=$oi");
+                $q1_result=$q1->fetch_object();;
+                echo '</tr>';
+                echo '<tr>';
+                echo '<td>';
+                echo $obj->timestamp;
+                echo '</td>';
+                echo '<td>';
+                echo $obj->product_name;
+                echo '</td>';
+                echo '<td>';
+                echo $obj->date_of_order;
+                echo '</td>';
+                echo '<td>';
+                echo $obj->slot_time;
+                echo '</td>';
+                if($obj->status==0)
+                {
+                echo '<td>'.'Pending Admin Approval'.'</td>';
+                }
+                else if($obj->status==1)
+                {
+                  // echo '<td>'.'Booking Approved'.'</td>';
+                  echo '<td>'.'<p align="center" style="color:blue">Booking Approved.</p>'.'</td>';
+                }
+              }
+
               echo '</tr>';
               echo '</table>';
               if($obj->date_of_order>=date("Y-m-d")){
